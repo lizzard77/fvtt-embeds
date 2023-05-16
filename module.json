@@ -1,0 +1,22 @@
+{
+    "id": "embeds",
+    "name": "embeds",
+    "title": "Embed Cloud Documents",
+    "description": "Google Docs, Office 365, or other documents right in your Foundry VTT journals",
+    "authors": [
+        {
+            "name": "Phil Reif"
+        }
+    ],
+    "compatibility": {
+        "minimum": 10,
+        "verified": 10,
+        "maximum": 11
+    },
+    "esmodules": [
+        "src/main.js"
+    ],
+    "styles": [
+        "styles/styles.css"
+    ]
+}

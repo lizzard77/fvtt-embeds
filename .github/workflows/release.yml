@@ -1,0 +1,34 @@
+name: Publish release
+
+on: 
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Extract tag version number
+        id: get_version
+        uses: battila7/get-version-action@v2
+
+      - name: Create zip archive
+        run: zip -r ./module.zip module.json src/ assets/ languages/ styles/ templates/ packs/
+
+      - name: Update release with files
+        id: create_version_release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true # Set this to false if you want to prevent updating existing releases
+          name: ${{ github.event.release.name }}
+          draft: ${{ github.event.release.unpublished }}
+          prerelease: ${{ github.event.release.prerelease }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "./module.json, ./module.zip"
+          tag: ${{ github.event.release.tag_name }}
+          body: ${{ github.event.release.body }}
+        
