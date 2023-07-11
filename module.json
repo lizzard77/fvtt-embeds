@@ -19,8 +19,5 @@
   },
   "esmodules": [
     "src/main.js"
-  ],
-  "styles": [
-    "styles/styles.css"
   ]
 }
