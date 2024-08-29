@@ -15,7 +15,7 @@
   "compatibility": {
     "minimum": "10",
     "maximum": "12",
-    "verified": "12.325"
+    "verified": "12.331"
   },
   "esmodules": [
     "src/main.js"
