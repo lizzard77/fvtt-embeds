@@ -19,7 +19,7 @@ async function createEmbed()
             }
         },
         default:'yes',
-        close: html => 
+        close: async (html) => 
         {
             let url = html.find('input[name=\'url\']');
             let name = html.find('input[name=\'name\']');
@@ -28,7 +28,9 @@ async function createEmbed()
                     name : name.val(),
                     content: code.replace('$url$', url.val())
                 };
-                JournalEntry.create(updates);
+                const entry = await JournalEntry.create(updates);
+                const page = await entry.createEmbeddedDocuments('JournalEntryPage', [{name: updates.name, "text.content": updates.content }]);
+                ui.notifications.info(`Embed created with name: ${entry.name}`);
             }
         }
     }).render(true);
