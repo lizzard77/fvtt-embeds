@@ -37,8 +37,11 @@ async function createEmbed()
 }
 
 Hooks.on('renderJournalDirectory', (app, html, data) => {
-    const actionButtons = html.find('.header-actions.action-buttons');
-    const myButton = '<button id="embedButton"><i class="fas fa-cloud"></i>Embed Cloud Document</button>';
-    actionButtons.append(myButton);
-    html.find("#embedButton").on('click', createEmbed);
+    const actionButtons = html.querySelector('.directory-footer');
+    const btn = document.createElement('button');
+    btn.id = 'createEmbed';
+    btn.innerHTML = '<i class="fas fa-cloud"></i>Embed Cloud Document';
+    btn.addEventListener('click', createEmbed);
+    actionButtons.appendChild(btn);
+    //html.find("#embedButton").on('click', createEmbed);
 });
